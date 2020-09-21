@@ -9,15 +9,24 @@ class DiscountCalculatorTest
         $totalWithDiscount = $discountCalculator->apply($totalValue);
 
         $expectedValue = 110;
-        return $this->assertEquals($expectedValue, $totalWithDiscount);
+        $this->assertEquals($expectedValue, $totalWithDiscount);
     }
 
-    public function assertEquals($expectedValue, $actualValue){
+    public function ShouldApplyWhenValueIsBellowTheMinimium(){
+        $discountCalculator = new DiscountCalculator();
+        $totalValue = 90;
+        $totalWithDiscount = $discountCalculator->apply($totalValue);
+
+        $expectedValue = 90;
+        $this->assertEquals($expectedValue, $totalWithDiscount);
+    }
+
+    private function assertEquals($expectedValue, $actualValue){
         if($expectedValue !== $actualValue){
             $message = 'Expected: ' . $expectedValue . ' but god: ' . $actualValue;
             throw  new \Exception($message);
         }
 
-        echo "Test Passed";
+        echo "Test Passed" . PHP_EOL;
     }
 }
